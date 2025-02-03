@@ -252,48 +252,7 @@
 
 
 
-    <style>
-        .slider {
-            background: white;
-            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, .125);
-            height: 300px;
-            /* Ajuster la hauteur de l="img/fenetre/fenêtre de défilement */
-            margin: auto;
-            overflow: hidden;
-            /* Masquer l'excédent de contenu */
-            position: relative;
-            width: 200px;
-            height: 1400px;
-            /* Largeur de l="img/fenetre/fenêtre */
-        }
 
-        .slide-track {
-            display: flex;
-            flex-direction: column;
-            /* Alignement vertical des images */
-            animation: scroll 80s linear infinite;
-            /* Animation de défilement */
-        }
-
-        .slide {
-            height: 200px;
-            /* Hauteur des images */
-            width: 150px;
-            /* Largeur des images */
-        }
-
-        @keyframes scroll {
-            50% {
-                transform: translateY(1000px);
-            }
-
-            50% {
-                transform: translateY(-1000px);
-            }
-
-            /* Défiler jusqu'à la fin de la liste */
-        }
-    </style>
 </head>
 
 <body>
@@ -310,12 +269,12 @@
         </div>
     </header>
     <div class="topnav">
-        <a class="active" href="index.html">Accueil</a>
-        <a href="about.html">À propos</a>
-        <a href="fenetre.html">Fenêtres</a>
+        <a class="active" href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="fenetre.html">Fenetres</a>
         <a href="portes.html">Portes</a>
-        <a href="tutoriel.html">Tutoriels</a>
         <a href="contact.html">Contact</a>
+        <a href="#contact">Contact</a>
         <div class="search-container">
             <form action="/action_page.php"> <input type="text" placeholder="Search.." name="search"> <button
                     type="submit"><i class="fa fa-search"></i>search </button> </form>
@@ -507,27 +466,26 @@
         });
     </script>
     <script>
-        window.onload = function () {
-            setActiveLink();
-        };
+        document.addEventListener('DOMContentLoaded', function () {
+            function setActive(element) {
+                // Remove active class from all links
+                var links = document.querySelectorAll('.topnav a');
+                links.forEach(link => {
+                    link.classList.remove('active');
+                });
 
-        function setActiveLink() {
-            var navbar = document.querySelector('.topnav');
-            var links = navbar.getElementsByTagName('a');
-            var currentUrl = window.location.href;
-
-            for (var i = 0; i < links.length; i++) {
-                if (links[i].href === currentUrl) {
-                    links[i].classList.add('active');
-                } else {
-                    links[i].classList.remove('active');
-                }
+                // Add active class to the clicked link
+                element.classList.add('active');
             }
-        }
 
-
+            var navLinks = document.querySelectorAll('.topnav a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function () {
+                    setActive(this);
+                });
+            });
+        });
     </script>
-
 
 </body>
 
